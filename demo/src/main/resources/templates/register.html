@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/register.css">
+
+</head>
+<body>
+<div class="header">
+    <div class="left-side">
+        <nav class="main-nav">
+            <a href="/" class="nav-link">Главная</a>
+            <a href="/login" class="nav-link">Вход</a>
+        </nav>
+    </div>
+    <div class="right-side">
+        <h1>ELECTRONIC BOOK STORE</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="registration-container">
+        <h2 class="form-title">Создать аккаунт</h2>
+
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label>Тип пользователя</label>
+                <select class="form-control" th:field="*{userType}">
+                    <option value="customer">Покупатель</option>
+                    <option value="employee">Сотрудник</option>
+                    <option value="admin">Администратор</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="username" class="form-label">Имя пользователя</label>
+                <input type="text" class="form-control" id="username" th:field="*{username}" required>
+                <div class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}" required>
+                <div class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber" class="form-label">Номер телефона</label>
+                <input type="tel" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}" required>
+                <small class="form-text text-muted">Минимум 8 символов</small>
+                <div class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword" class="form-label">Подтвердите пароль</label>
+                <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}" required>
+                <div class="error-message" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-register">Зарегистрироваться</button>
+        </form>
+
+        <div class="login-link">
+            Уже есть аккаунт? <a th:href="@{/login}">Войти</a>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

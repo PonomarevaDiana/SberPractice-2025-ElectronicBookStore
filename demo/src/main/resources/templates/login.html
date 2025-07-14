@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в систему</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/general.css">
+</head>
+<body>
+<div class="header">
+    <div class="left-side">
+        <nav class="main-nav">
+            <a href="/" class="nav-link">Главная</a>
+            <a href="/register" class="nav-link">Регистрация</a>
+        </nav>
+    </div>
+    <div class="right-side">
+        <h1>ELECTRONIC BOOK STORE</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="login-container">
+        <h2 class="form-title">Вход в систему</h2>
+
+        <div th:if="${param.registered}" class="alert alert-success">
+            Регистрация прошла успешно! Теперь вы можете войти.
+        </div>
+        <div th:if="${errorMessage != null}" class="alert alert-danger" th:text="${errorMessage}">
+            Сообщение об ошибке появится здесь
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label for="username" class="form-label">Имя пользователя или Email</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-login">Войти</button>
+        </form>
+        <div class="links">
+            <a th:href="@{/register}">Создать аккаунт</a>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-info">
+            <h5 class="footer-title">Electronic Book Store</h5>
+            <p class="footer-text">Лучший выбор книг для всех читателей</p>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2025 Все права защищены</p>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+body {
+    background-image: url("/images/register.jpg");
+    background-size: cover;
+}
+.form-control {
+    border: 1px solid #bc8b51;
+}
+.registration-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.form-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #343a40;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-control {
+    border: 1px solid #bc8b51;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 10px;
+    font-weight: 600;
+    background-color: #dd7b53;
+    border-color: #dd7b53;
+    color: white;
+}
+.btn-register:hover {
+    background-color: #b8603e;
+    border-color:  #b8603e;
+}
+.login-link{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-link a {
+    color: #b8603e;
+    text-decoration: none;
+
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+.error-message {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 5px;
+}
+
+
+
