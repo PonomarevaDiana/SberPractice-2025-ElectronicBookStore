@@ -4,6 +4,7 @@ import com.example.demo.model.Book;
 import com.example.demo.model.CartItem;
 import com.example.demo.model.Order;
 import com.example.demo.model.User;
+import com.example.demo.repository.CartItemRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.BookService;
 import com.example.demo.service.CartService;
@@ -30,6 +31,7 @@ public class CartController {
     private final UserRepository userRepository;
     private final BookService bookService;
     private final OrderService orderService;
+    private final CartItemRepository cartItemRepository;
 
     @GetMapping
     public String viewCart(Model model,
@@ -58,9 +60,18 @@ public class CartController {
         try {
             Book book = bookService.getBookById(bookId)
                     .orElseThrow(() -> new RuntimeException("Книга не найдена"));
-            if (book.getQuantity() < quantity) {
+
+            CartItem cartItem = cartItemRepository.findByUserAndBook(user, book)
+                    .orElseGet(() -> CartItem.builder()
+                            .user(user)
+                            .book(book)
+                            .quantity(0)
+                            .build());
+            Integer dif = book.getQuantity()-cartItem.getQuantity();
+
+            if ( dif < quantity) {
                 redirectAttributes.addFlashAttribute("errorMessage",
-                        "Недостаточно книг на складе. Доступно: " + book.getQuantity());
+                        "Недостаточно книг на складе. Доступно: " + dif);
                 return "redirect:/book/" + bookId;
             }
             redirectAttributes.addFlashAttribute("successMessage", "Товар добавлен в корзину");

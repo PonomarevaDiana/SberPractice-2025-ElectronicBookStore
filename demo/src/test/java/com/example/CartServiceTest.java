@@ -10,6 +10,8 @@ import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.math.BigDecimal;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,7 +44,8 @@ public class CartServiceTest {
         book.setQuantity(3);
         Book savedBook = bookRepository.save(book);
 
-        cartService.addToCart(savedUser.getId(), savedBook.getId(), 1);
+        Object redirrectAttributes = null;
+        cartService.addToCart(savedUser.getId(), savedBook.getId(), 1, RedirectAttributes redirrectAttributes);
 
         List<CartItem> items = cartService.getCartItems(savedUser);
         assertEquals(1, items.size());

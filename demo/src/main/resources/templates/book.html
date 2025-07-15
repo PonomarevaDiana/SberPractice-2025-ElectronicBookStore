@@ -108,7 +108,7 @@
                         <input type="text"
                                class="qty-input"
                                name="quantity"
-                               th:value="${inCart ? cartQuantity : 1}"
+                               th:value="1"
                                oninput="validateQuantity(this)"
                                onblur="sanitizeQuantity(this)"
                                pattern="[0-9]*"

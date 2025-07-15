@@ -9,6 +9,8 @@ import com.example.demo.repository.CartItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
@@ -20,7 +22,6 @@ public class CartService {
     private final UserRepository userRepository;
     private final BookService bookService;
     private final CartItemRepository cartItemRepository;
-
 
     @Transactional
     public CartItem addToCart(Long userId, Long bookId, int quantity) {
@@ -43,7 +44,6 @@ public class CartService {
         cartItem.increaseQuantity(quantity);
         return cartItemRepository.save(cartItem);
     }
-
     @Transactional
     public List<CartItem> getCartItems(User user) {
         return cartItemRepository.findByUser(user);
