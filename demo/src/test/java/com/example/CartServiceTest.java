@@ -31,7 +31,6 @@ public class CartServiceTest {
 
     @Test
     public void testAddToCart() {
-        // Создаем тестового пользователя напрямую
         User user = new User();
         user.setUsername("testuser");
         user.setPassword("password");
@@ -44,8 +43,7 @@ public class CartServiceTest {
         book.setQuantity(3);
         Book savedBook = bookRepository.save(book);
 
-        Object redirrectAttributes = null;
-        cartService.addToCart(savedUser.getId(), savedBook.getId(), 1, RedirectAttributes redirrectAttributes);
+        cartService.addToCart(savedUser.getId(), savedBook.getId(), 1);
 
         List<CartItem> items = cartService.getCartItems(savedUser);
         assertEquals(1, items.size());

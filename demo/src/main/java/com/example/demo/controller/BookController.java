@@ -31,7 +31,7 @@ public class BookController  implements WebMvcConfigurer {
     @GetMapping("/{id}")
     public String showBookDetails(@PathVariable Long id, Model model, @AuthenticationPrincipal User currentUser) {
         Book book = bookService.getBookById(id)
-                .orElseThrow(() -> new NotFoundException("Book not found with id: " + id));
+                .orElseThrow(() -> new NotFoundException("Книга не найдена с id: " + id));
         boolean inCart = false;
         int cartQuantity = 0;
 

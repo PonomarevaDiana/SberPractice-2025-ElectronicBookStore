@@ -14,7 +14,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
     boolean existsByUsername(String username);
     List<User> findByRole(User.Role role);
-    // Упрощенный метод поиска по роли и строке
     @Query("SELECT u FROM User u WHERE u.role = :role " +
             "AND (u.username LIKE %:search% OR u.email LIKE %:search%)")
     List<User> findByRoleAndSearch(@Param("role") User.Role role,

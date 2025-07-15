@@ -8,19 +8,19 @@ import lombok.Data;
 @Data
 public class UserRegistrationDto {
 
-    @NotBlank(message = "Username is required")
-    @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters")
+    @NotBlank(message = "Требуется ввести имя")
+    @Size(min = 3, max = 50, message = "Имя должно быть от 3 до 5 символов")
     private String username;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Invalid email format")
+    @NotBlank(message = "Требуется ввести email")
+    @Email(message = "Неправильный формат email")
     private String email;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password must be at least 6 characters")
+    @NotBlank(message = "Требуется ввести пароль")
+    @Size(min = 6, message = "Пароль должен состоять не менее чем из 6 символов")
     private String password;
 
-    @NotBlank(message = "Password confirmation is required")
+    @NotBlank(message = "Требуется ввести повторный пароль")
     private String confirmPassword;
 
     private String phoneNumber;

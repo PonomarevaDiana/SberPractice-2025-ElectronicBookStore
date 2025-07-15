@@ -39,11 +39,10 @@ class BookControllerTest {
 
     @Test
     void getBooks_ShouldReturnBooks() throws Exception {
-        // Arrange
+
         when(bookService.getAllBooks())
                 .thenReturn(List.of(new Book(), new Book()));
 
-        // Act & Assert
         mockMvc.perform(get("/books"))
                 .andExpect(status().isOk())
                 .andExpect((ResultMatcher) jsonPath("$.length()").value(2));
