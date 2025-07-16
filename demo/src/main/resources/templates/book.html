@@ -56,39 +56,42 @@
             </div>
         </div>
         <div class="book-details-section">
-            <h1 class="book-title" th:text="${book.title}">Преступление и наказание</h1>
-            <p class="book-author" th:text="${book.author}">Фёдор Достоевский</p>
+            <h1 class="book-title" th:text="${book.title}">Название</h1>
+            <p class="book-author" th:text="${book.author}">Автор</p>
             <div class="book-meta-grid">
                 <div class="meta-item">
                     <span class="meta-label">ID товара:</span>
-                    <span class="meta-value" th:text="${book.id}">B00123</span>
+                    <span class="meta-value" th:text="${book.id}">ID</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Язык:</span>
-                    <span class="meta-value" th:text="${book.language}">Русский</span>
+                    <span class="meta-value" th:text="${book.language}"Язык</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Год издания:</span>
-                    <span class="meta-value" th:text="${book.publicationYear}">1866</span>
+                    <span class="meta-value" th:text="${book.publicationYear}">Год издания</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Жанр:</span>
-                    <span class="meta-value" th:text="${book.genre != null} ? ${book.genre} : 'Не указан'">Классическая литература</span>
+                    <span class="meta-value" th:text="${book.genre != null} ? ${book.genre} : 'Не указан'">Жанр</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">ISBN:</span>
-                    <span class="meta-value" th:text="${book.isbn != null} ? ${book.isbn} : 'Не указан'">978-5-699-12014-7</span>
+                    <span class="meta-value" th:text="${book.isbn != null} ? ${book.isbn} : 'Не указан'">isbn</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Страниц:</span>
-                    <span class="meta-value" th:text="${book.pageCount != null} ? ${book.pageCount} : 'Не указано'">608</span>
+                    <span class="meta-value" th:text="${book.pageCount != null} ? ${book.pageCount} : 'Не указано'">Количевто страниц</span>
                 </div>
             </div>
             <div th:if="${book.rating != null}" style="font-size:20px; color:#555;">
                 Рейтинг: <strong th:text="${book.rating} + '/10'" style="color:#2c3e50;"></strong>
             </div>
             <div class="book-description" th:if="${book.description != null}">
-                <p th:text="${book.description}">Глубокий психологический роман о бывшем студенте Родионе Раскольникове...</p>
+                <h3 class="description-title">Аннотация</h3>
+                <div class="description-content">
+                    <p th:text="${book.description}"></p>
+                </div>
             </div>
             <div class="price-section">
                 <div class="price-wrapper">
@@ -115,6 +118,9 @@
                                inputmode="numeric">
                         <button type="button" class="qty-btn plus">+</button>
                     </div>
+                    <div th:if="${inCart}" class="alert alert-info mt-2 mb-2">
+                    Товар уже есть в корзине в количестве <span th:text="${cartQuantity}"></span> шт.
+                     </div>
                     <div th:if="${book.isOutOfStock()}" class="alert alert-warning mt-2">
                         Извините, этот товар закончился
                     </div>
